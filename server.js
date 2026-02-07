@@ -7,8 +7,13 @@ const airesponse = require("./src/services/ai.service")
 const httpServer = createServer(app)
 const io = new Server(httpServer, {
   cors: {
-    origin: ["https://project-4-frontend-five.vercel.app/"],
+    origin: [
+      "https://project-4-frontend-five.vercel.app",
+      "http://localhost:5173",
+      "http://localhost:3000",
+    ],
     methods: ["GET", "POST"],
+    credentials: true,
   },
 })
 
@@ -45,6 +50,7 @@ io.on("connection", (socket) => {
   })
 })
 
-httpServer.listen(3000, () => {
-  console.log("Server running on http://localhost:3000")
+const PORT = process.env.PORT || 3000
+httpServer.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`)
 })
