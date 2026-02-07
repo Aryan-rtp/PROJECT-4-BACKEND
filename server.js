@@ -22,6 +22,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("User disconnected:", socket.id)
+    chatHIstory.length = 0
   })
 
   socket.on("ai-message", async (data) => {
